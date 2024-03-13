@@ -41,17 +41,31 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
+    final colors = Theme.of(context).colorScheme;
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
     return CustomScrollView(
       slivers: [
 
-        const SliverAppBar(
+        SliverAppBar(
           floating: true,
-          flexibleSpace: FlexibleSpaceBar(
-            title: CustomAppBar(),
+          toolbarHeight: 55,
+          title: Row(
+            children: [
+              Icon(Icons.movie_outlined, color: colors.primary),
+              const SizedBox(width: 4,),
+              Text("Cinemapedia", style: titleStyle,)
+            ],
           ),
+          actions: [
+            IconButton(onPressed: (){}, icon: const Icon(Icons.search_rounded))
+          ],
+          // flexibleSpace: FlexibleSpaceBar(
+          //   title: CustomAppBar(),
+          // ),
         ),
 
         SliverList(delegate: SliverChildBuilderDelegate(
@@ -98,7 +112,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   },
                 ),
 
-                const SizedBox(height: 20,)
+                const SizedBox(height: 10,)
               ],
             );    
           },

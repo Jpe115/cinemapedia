@@ -33,7 +33,6 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
       if (widget.loadNextPage == null) return;
 
       if ( (scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent){
-        print("Load next movies");
         widget.loadNextPage!();
       }
     });
@@ -48,14 +47,14 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 365,
+      height: 374,
       child: Column(
         children: [
 
           if (widget.title != null || widget.subTitle != null)
             _Title(title: widget.title, subTitle: widget.subTitle,),
 
-          const SizedBox(height: 7,),
+          const SizedBox(height: 11,),
 
           Expanded(
             child: ListView.builder(
@@ -136,7 +135,9 @@ class _Slide extends StatelessWidget {
               const SizedBox(width: 10,),
               Text( HumanFormats.number(movie.popularity, 0), style: textStyle.bodySmall,)
             ],
-          )
+          ),
+
+          const SizedBox(height: 5,)
 
         ],
       ),
