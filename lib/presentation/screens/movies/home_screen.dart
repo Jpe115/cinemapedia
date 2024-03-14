@@ -47,11 +47,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final colors = Theme.of(context).colorScheme;
     final titleStyle = Theme.of(context).textTheme.titleLarge;
 
+    final slideShowMovies = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
-    final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
     return CustomScrollView(
       slivers: [
