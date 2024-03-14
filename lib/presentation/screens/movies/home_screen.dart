@@ -36,6 +36,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
     
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -45,6 +46,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final titleStyle = Theme.of(context).textTheme.titleLarge;
 
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
     return CustomScrollView(
@@ -95,11 +97,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 ),
 
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: popularMovies,
                   title: "Populares",
                   //subTitle: "De todos los tiempos",
                   loadNextPage: () {
-                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                    ref.read(popularMoviesProvider.notifier).loadNextPage();
                   },
                 ),
 
