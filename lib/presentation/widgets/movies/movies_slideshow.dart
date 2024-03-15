@@ -74,6 +74,7 @@ class _Slide extends StatelessWidget {
                   decoration: BoxDecoration(color: Colors.black12)
                 );
               }
+              return child;
 
               return FadeIn(child: child);
             },
