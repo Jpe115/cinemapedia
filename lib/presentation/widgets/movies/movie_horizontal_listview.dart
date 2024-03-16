@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,14 @@ class MovieHorizontalListview extends StatefulWidget {
 class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
   final scrollController = ScrollController();
+  String scrollDirection = "idle";
+  double lastScrollPosition = 0;
 
   @override
   void initState() {
     super.initState();
+
+    scrollController.addListener(_scrollListener);
 
     scrollController.addListener(() {
       if (widget.loadNextPage == null) return;
@@ -40,8 +45,24 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
   @override
   void dispose() {
+    scrollController.removeListener(_scrollListener);
     scrollController.dispose();
     super.dispose();
+  }
+
+  void _scrollListener() {
+    // Determina la dirección del scroll
+    if (scrollController.position.pixels > lastScrollPosition) {
+      // Hacia la derecha
+      scrollDirection = "Scrolling Right";
+
+    } else if (scrollController.position.pixels < lastScrollPosition) {
+      // Hacia la izquierda
+      scrollDirection = "Scrolling Left";
+    }
+
+    // Actualiza la última posición conocida del scroll
+    lastScrollPosition = scrollController.position.pixels;
   }
 
   @override
@@ -63,7 +84,18 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return _Slide(movie: widget.movies[index],);
+                if (scrollDirection == "Scrolling Right"){
+                  return FadeInRight(
+                    duration: const Duration(milliseconds: 650),
+                    child: _Slide(movie: widget.movies[index]),
+                  );
+                }
+                
+                return FadeInLeft(
+                  duration: const Duration(milliseconds: 650),
+                  child: _Slide(movie: widget.movies[index])
+                );
+                
               },
             )
           )
