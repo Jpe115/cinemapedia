@@ -1,4 +1,4 @@
-import 'package:animate_do/animate_do.dart';
+//import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +76,7 @@ class _Slide extends StatelessWidget {
               }
               return child;
 
-              return FadeIn(child: child);
+              //return FadeIn(child: child);
             },
           ),
         ),
