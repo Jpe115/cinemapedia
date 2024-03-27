@@ -86,6 +86,8 @@ class _MovieDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Text(movie.title, style: textStyles.titleLarge),
+                    Text("Sinópsis:", style: textStyles.titleMedium,),
+                    const SizedBox(height: 1),
                     Text(movie.overview, style: textStyles.bodyMedium,)
                   ],
                 ),
