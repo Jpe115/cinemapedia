@@ -118,12 +118,12 @@ class _MovieDetails extends StatelessWidget {
 
         //Lista de actores
         Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(left: 9),
           child: Text("Cast", style: textStyles.titleLarge),
         ),
         _ActorsByMovie(movieId: movie.id.toString()),
 
-        const SizedBox(height: 35)
+        const SizedBox(height: 25)
       ],
     );
   }
