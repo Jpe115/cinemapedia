@@ -9,7 +9,7 @@ class ActorMapper{
       name: cast.name, 
       profilePath: cast.profilePath != null 
         ? "https://image.tmdb.org/t/p/w500${ cast.profilePath }" 
-        : "https://i.pinimg.com/736x/d2/98/4e/d2984ec4b65a8568eab3dc2b640fc58e.jpg", 
+        : "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-541.jpg?size=338&ext=jpg&ga=GA1.1.1930204137.1711497600&semt=ais", 
       character: cast.character
     );
 
