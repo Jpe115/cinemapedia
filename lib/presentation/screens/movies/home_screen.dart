@@ -1,3 +1,4 @@
+import 'package:cinemapedia/presentation/delegates/search_movie_delegate.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,7 +72,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
             ],
           ),
           actions: [
-            IconButton(onPressed: (){}, icon: const Icon(Icons.search_rounded))
+            IconButton(
+              onPressed: (){
+                showSearch(context: context, delegate: SearchMovieDelegate());
+              }, 
+              icon: const Icon(Icons.search_rounded)
+            )
           ],
           // flexibleSpace: FlexibleSpaceBar(
           //   title: CustomAppBar(),
