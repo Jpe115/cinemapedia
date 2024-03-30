@@ -74,7 +74,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           actions: [
             IconButton(
               onPressed: (){
-                showSearch(context: context, delegate: SearchMovieDelegate());
+                showSearch(context: context, delegate: SearchMovieDelegate(
+                  searchMovies: ref.read(movieRepositoryProvider).searchMovies
+                ));
               }, 
               icon: const Icon(Icons.search_rounded)
             )
