@@ -125,13 +125,13 @@ class _MovieItem extends StatelessWidget {
         onMovieSelected(context, movie);
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: Row(
           children: [
       
             //Imagen
             SizedBox(
-              width: size.width * 0.2,
+              width: size.width * 0.24,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
@@ -144,7 +144,7 @@ class _MovieItem extends StatelessWidget {
       
             //Descripción
             SizedBox(
-              width: size.width * 0.7,
+              width: size.width * 0.66,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
