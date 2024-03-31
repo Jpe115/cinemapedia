@@ -1,9 +1,11 @@
+import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/delegates/search_movie_delegate.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -74,9 +76,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           actions: [
             IconButton(
               onPressed: (){
-                showSearch(context: context, delegate: SearchMovieDelegate(
-                  searchMovies: ref.read(movieRepositoryProvider).searchMovies
-                ));
+                showSearch<Movie?>(
+                  context: context, 
+                  delegate: SearchMovieDelegate(
+                    searchMovies: ref.read(movieRepositoryProvider).searchMovies
+                  )
+                ).then((movie) {
+                  if (movie == null) return;
+
+                  context.push("/movie/${movie.id}");
+                });
               }, 
               icon: const Icon(Icons.search_rounded)
             )
