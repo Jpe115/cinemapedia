@@ -77,10 +77,17 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           actions: [
             IconButton(
               onPressed: (){
+
+                final searchQuery = ref.read(searchQueryProvider); 
+
                 showSearch<Movie?>(
+                  query: searchQuery,
                   context: context, 
                   delegate: SearchMovieDelegate(
-                    searchMovies: ref.read(movieRepositoryProvider).searchMovies
+                    searchMovies: (query) {
+                      ref.read(searchQueryProvider.notifier).update((state) => query);
+                      return ref.read(movieRepositoryProvider).searchMovies(query);
+                    }
                   )
                 ).then((movie) {
                   if (movie == null) return;
