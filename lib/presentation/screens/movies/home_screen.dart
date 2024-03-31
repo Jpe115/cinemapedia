@@ -84,10 +84,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   query: searchQuery,
                   context: context, 
                   delegate: SearchMovieDelegate(
-                    searchMovies: (query) {
-                      ref.read(searchQueryProvider.notifier).update((state) => query);
-                      return ref.read(movieRepositoryProvider).searchMovies(query);
-                    }
+                    searchMovies: ref.read(searchedMoviesProvider.notifier).searchMoviesByQuery
                   )
                 ).then((movie) {
                   if (movie == null) return;
