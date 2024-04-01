@@ -11,11 +11,14 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 class SearchMovieDelegate extends SearchDelegate<Movie?>{
 
   final SearchMoviesCallback searchMovies;
+  final List<Movie> initialMovies;
+
   StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
   Timer? _debounceTimer;
 
   SearchMovieDelegate({
-    required this.searchMovies
+    required this.searchMovies,
+    required this.initialMovies
   });
 
   void clearStreams(){
@@ -80,6 +83,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?>{
 
     return StreamBuilder(
       //future: searchMovies(query),
+      initialData: initialMovies,
       stream: debouncedMovies.stream,
       builder: (context, snapshot) {
         

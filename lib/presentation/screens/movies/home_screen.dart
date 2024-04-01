@@ -79,11 +79,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               onPressed: (){
 
                 final searchQuery = ref.read(searchQueryProvider); 
+                final searchedMovies = ref.read(searchedMoviesProvider);
 
                 showSearch<Movie?>(
                   query: searchQuery,
                   context: context, 
                   delegate: SearchMovieDelegate(
+                    initialMovies: searchedMovies,
                     searchMovies: ref.read(searchedMoviesProvider.notifier).searchMoviesByQuery
                   )
                 ).then((movie) {
