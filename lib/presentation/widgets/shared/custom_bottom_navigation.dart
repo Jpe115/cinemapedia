@@ -3,6 +3,24 @@ import 'package:go_router/go_router.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
 
+  int getCurrentIndex(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.path;
+
+    switch(location) {
+      case "/":
+        return 0;
+
+      case "/categories":
+        return 1;
+
+      case "favorites":
+        return 2;
+
+      default:
+        return 0;
+    }
+  }
+
   void onItemTapped(BuildContext context, int index) {
 
     switch(index){
@@ -27,6 +45,7 @@ class CustomBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: (index) => onItemTapped(context, index),
+      currentIndex: getCurrentIndex(context),
       //elevation: 0,
       items: const [
         BottomNavigationBarItem(
