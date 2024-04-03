@@ -92,6 +92,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?>{
         return ListView.builder(
           itemCount: movies.length,
           itemBuilder: (context, index) {
+
             return _MovieItem(
               movie: movies[index], 
               onMovieSelected: (context, movie){
@@ -99,6 +100,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?>{
                 close(context, movie);
               }
             );
+            
           },
         );
       },
