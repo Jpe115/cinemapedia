@@ -172,7 +172,11 @@ class _ActorsByMovie extends ConsumerWidget {
                 const SizedBox(height: 5),
 
                 //Nombre
-                Text(actor.name, maxLines: 2,),
+                Text(
+                  actor.name, 
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                ),
                 Text(actor.character ?? "",
                   textAlign: TextAlign.center,
                   maxLines: 2,
