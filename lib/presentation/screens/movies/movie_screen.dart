@@ -1,8 +1,9 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:animate_do/animate_do.dart';
+
+import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/presentation/providers/providers.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
 
@@ -228,38 +229,58 @@ class _CustomSliverAppBar extends StatelessWidget {
               ),
             ),
 
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.7, 1.0],
-                    colors: [
-                      Colors.transparent,
-                      Colors.black54
-                    ]
-                  )
-                )
-              ),
+            const _CustomGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.8, 1.0],
+              colors: [
+                Colors.transparent,
+                Colors.black54,
+              ]
             ),
 
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    stops: [0.0, 0.3],
-                    colors: [
-                      Colors.black54,
-                      Colors.transparent,
-                    ]
-                  )
-                )
-              ),
-            )
+            const _CustomGradient(
+              begin: Alignment.topLeft,
+              stops: [0.0, 0.3],
+              colors: [
+                Colors.black54,
+                Colors.transparent,
+              ], 
+            ),
+
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _CustomGradient extends StatelessWidget {
+
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
+  final List<double> stops;
+  final List<Color> colors;
+
+  const _CustomGradient({
+    required this.colors, 
+    this.begin = Alignment.centerLeft, 
+    this.end = Alignment.centerRight, 
+    required this.stops
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: begin,
+            end: end,
+            stops: stops,
+            colors: colors
+          )
+        )
       ),
     );
   }
