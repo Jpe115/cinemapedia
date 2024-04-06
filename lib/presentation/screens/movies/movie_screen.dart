@@ -223,9 +223,9 @@ class _CustomSliverAppBar extends ConsumerWidget {
             backgroundColor: const Color.fromARGB(77, 138, 137, 137),
             shape: const CircleBorder()
           ),
-          onPressed: () {
+          onPressed: () async {
 
-            ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+            await ref.read(localStorageRepositoryProvider).toggleFavorite(movie);
 
             ref.invalidate(isFavoriteProvider(movie.id));
 
