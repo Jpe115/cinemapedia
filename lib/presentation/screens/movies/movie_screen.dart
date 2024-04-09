@@ -1,3 +1,4 @@
+import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
@@ -101,7 +102,7 @@ class _MovieDetails extends StatelessWidget {
 
         //Géneros de la peliícula
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(13),
           child: Wrap(
             children: [
               ...movie.genreIds.map((genre) => Container(
@@ -123,6 +124,13 @@ class _MovieDetails extends StatelessWidget {
           child: Text("Cast", style: textStyles.titleLarge),
         ),
         _ActorsByMovie(movieId: movie.id.toString()),
+
+        //Recomendaciones
+        Padding(
+          padding: const EdgeInsets.only(left: 9),
+          child: Text("Recomendaciones", style: textStyles.titleLarge),
+        ),
+        //MovieHorizontalListview(movies: movies),
 
         const SizedBox(height: 25)
       ],
@@ -146,7 +154,7 @@ class _ActorsByMovie extends ConsumerWidget {
     final actors = actorsByMovie[movieId]!;
 
     return SizedBox(
-      height: 300,
+      height: 281,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,
