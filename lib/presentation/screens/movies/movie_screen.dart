@@ -1,9 +1,9 @@
-import 'package:cinemapedia/presentation/providers/movies/similar_movies_provider.dart';
-import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
 
+import 'package:cinemapedia/presentation/providers/movies/similar_movies_provider.dart';
+import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 
@@ -163,6 +163,7 @@ class _ActorsByMovie extends ConsumerWidget {
       height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
         itemCount: actors.length,
         itemBuilder: (BuildContext context, int index) { 
           final actor = actors[index];
