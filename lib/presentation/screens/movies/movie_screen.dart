@@ -126,7 +126,7 @@ class _MovieDetails extends StatelessWidget {
 
         //Lista de actores
         Padding(
-          padding: const EdgeInsets.only(left: 9),
+          padding: const EdgeInsets.only(left: 9, top: 5),
           child: Text("Cast", style: textStyles.titleLarge),
         ),
         _ActorsByMovie(movieId: movie.id.toString()),
@@ -160,7 +160,7 @@ class _ActorsByMovie extends ConsumerWidget {
     final actors = actorsByMovie[movieId]!;
 
     return SizedBox(
-      height: 281,
+      height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,
