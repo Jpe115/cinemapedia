@@ -99,5 +99,18 @@ class MovieDBDatasource extends MoviesDatasource{
     
     return _jsonToMovies(response.data);
   }
+  
+  @override
+  Future<List<Movie>> getSimilarMovies(String id) async{
+    final response = await dio.get("/movie/$id/similar", 
+      queryParameters: {
+        "page": 1 
+      }
+    );
+    
+    if (response.statusCode != 200) throw Exception("Similars for movie with id: $id not found");
+
+    return _jsonToMovies(response.data);
+  }
 
 }
