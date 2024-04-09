@@ -44,7 +44,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
         slivers: [
           _CustomSliverAppBar(movie: movie,),
           SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) => _MovieDetails(movie: movie, similarMovies: similars!),
+            (context, index) => _MovieDetails(movie: movie, similarMovies: similars),
             childCount: 1
           ))
         ],
