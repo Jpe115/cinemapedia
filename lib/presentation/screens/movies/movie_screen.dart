@@ -1,3 +1,4 @@
+import 'package:cinemapedia/presentation/providers/movies/similar_movies_provider.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,14 +27,16 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
     ref.read(actorsbyMovieProvider.notifier).loadActors(widget.movieId);
+    ref.read(similarMoviesProvider.notifier).loadSimilars(widget.movieId);
   }
 
   @override
   Widget build(BuildContext context) {
 
     final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId]; 
+    final List<Movie>? similars = ref.watch(similarMoviesProvider)[widget.movieId];
 
-    if (movie == null) return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 2.5,),),);
+    if (movie == null || similars == null) return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 2.5,),),);
 
     return Scaffold(
       body: CustomScrollView(
@@ -41,7 +44,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
         slivers: [
           _CustomSliverAppBar(movie: movie,),
           SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) => _MovieDetails(movie: movie),
+            (context, index) => _MovieDetails(movie: movie, similarMovies: similars!),
             childCount: 1
           ))
         ],
@@ -53,8 +56,9 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 class _MovieDetails extends StatelessWidget {
 
   final Movie movie;
+  final List<Movie> similarMovies;
 
-  const _MovieDetails({required this.movie});
+  const _MovieDetails({required this.movie, required this.similarMovies});
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +134,9 @@ class _MovieDetails extends StatelessWidget {
           padding: const EdgeInsets.only(left: 9),
           child: Text("Recomendaciones", style: textStyles.titleLarge),
         ),
-        //MovieHorizontalListview(movies: movies),
+        MovieHorizontalListview(movies: similarMovies),
 
-        const SizedBox(height: 25)
+        //const SizedBox(height: 5)
       ],
     );
   }
